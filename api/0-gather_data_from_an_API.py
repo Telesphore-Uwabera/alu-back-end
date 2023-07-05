@@ -13,13 +13,13 @@ def get_employee_todo_list(employee_id):
     Retrieves and displays the TODO list progress for a given employee ID.
     """
 
-    # Make a GET request to the API endpoint
+    # Making a GET request to the API endpoint
     response = requests.get(
         'https://jsonplaceholder.typicode.com/todos',
         params={'userId': employee_id}
     )
 
-    # Check if the request was successful
+    # Checking if the request was successful
     if response.status_code != 200:
         print(f"Error: Failed to retrieve TODO list for employee {employee_id}")
         return
@@ -29,7 +29,7 @@ def get_employee_todo_list(employee_id):
     # Filter completed tasks
     completed_tasks = [todo for todo in todos if todo['completed']]
 
-    # Display progress information
+    # Displaying progress information
     employee_name = todos[0]['username']
     total_tasks = len(todos)
     completed_tasks_count = len(completed_tasks)
@@ -38,7 +38,7 @@ def get_employee_todo_list(employee_id):
         f"Employee {employee_name} is done with tasks({completed_tasks_count}/{total_tasks}):"
     )
 
-    # Display the titles of completed tasks
+    # Displaying the titles of completed tasks
     for task in completed_tasks:
         print(f"\t{task['title']}")
 
@@ -50,4 +50,3 @@ if __name__ == "__main__":
 
     employee_id = int(sys.argv[1])
     get_employee_todo_list(employee_id)
-
