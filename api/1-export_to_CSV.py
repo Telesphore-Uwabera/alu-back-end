@@ -14,20 +14,20 @@ def get_employee_todo_list(employee_id):
     Retrieves and exports the TODO list progress for a given employee ID in CSV format.
     """
 
-    # Make a GET request to the API endpoint
+    # Making a GET request to the API endpoint
     response = requests.get(
         'https://jsonplaceholder.typicode.com/todos',
         params={'userId': employee_id}
     )
 
-    # Check if the request was successful
+    # Checking if the request was successful
     if response.status_code != 200:
         print(f"Error: Failed to retrieve TODO list for employee {employee_id}")
         return
 
     todos = response.json()
 
-    # Prepare the CSV filename
+    # Preparing the CSV filename
     filename = f"{employee_id}.csv"
 
     # Open the CSV file in write mode
@@ -35,7 +35,7 @@ def get_employee_todo_list(employee_id):
         writer = csv.writer(file)
         writer.writerow(["USER_ID", "USERNAME", "TASK_COMPLETED_STATUS", "TASK_TITLE"])
 
-        # Write each task as a row in the CSV file
+        # Writing each task as a row in the CSV file
         for todo in todos:
             user_id = todo['userId']
             username = todo['username']
