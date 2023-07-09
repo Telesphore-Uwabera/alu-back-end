@@ -25,4 +25,3 @@ if __name__ == '__main__':
     user_dict = {str(employee_id): todos_info_sorted}
     with open(str(employee_id) + '.json', "w") as file:
         file.write(json.dumps(user_dict))
-      
