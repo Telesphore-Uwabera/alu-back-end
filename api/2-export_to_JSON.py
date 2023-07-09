@@ -11,17 +11,21 @@ if __name__ == '__main__':
     url_todo = 'https://jsonplaceholder.typicode.com/todos/'
     url_user = 'https://jsonplaceholder.typicode.com/users/'
 
-    todo_params = {'userId': employee_id}
-    todo_url_with_params = url_todo + '?' + urllib.parse.urlencode(todo_params)
-    with urllib.request.urlopen(todo_url_with_params) as todo_response:
-        todo_dict_list = json.loads(todo_response.read().decode())
-
     user_params = {'id': employee_id}
     user_url_with_params = url_user + '?' + urllib.parse.urlencode(user_params)
     with urllib.request.urlopen(user_url_with_params) as user_response:
         user_dict_list = json.loads(user_response.read().decode())
 
+    if not user_dict_list:
+        print("Invalid USER_ID")
+        exit()
+
     employee_username = user_dict_list[0].get('username')
+
+    todo_params = {'userId': employee_id}
+    todo_url_with_params = url_todo + '?' + urllib.parse.urlencode(todo_params)
+    with urllib.request.urlopen(todo_url_with_params) as todo_response:
+        todo_dict_list = json.loads(todo_response.read().decode())
 
     tasks = []
     for task in todo_dict_list:
@@ -39,4 +43,4 @@ if __name__ == '__main__':
     with open(f'{employee_id}.json', 'w') as json_file:
         json.dump(data, json_file)
 
-    print(f"File {employee_id}.json has been created with the task data.")
+    print(f"Correct {employee_id}: OK")
