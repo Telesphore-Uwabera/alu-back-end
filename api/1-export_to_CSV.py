@@ -30,4 +30,3 @@ if __name__ == '__main__':
             status = task['completed']
             title = task['title']
             csvwriter.writerow([employee_id, employee, status, title])
-
