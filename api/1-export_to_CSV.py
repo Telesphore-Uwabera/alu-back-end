@@ -24,9 +24,13 @@ if __name__ == '__main__':
 
     employee = user_dict_list[0].get('username')
 
+    task_count = 0
     with open("{}.csv".format(employee_id), "a+", newline='') as csvfile:
         csvwriter = csv.writer(csvfile, quoting=csv.QUOTE_ALL)
         for task in todo_dict_list:
             status = task['completed']
             title = task['title']
             csvwriter.writerow([employee_id, employee, status, title])
+            task_count += 1
+
+    print("Number of tasks in CSV: {}".format(task_count))
