@@ -31,4 +31,3 @@ if __name__ == '__main__':
     for task in data:
         if task["completed"]:
             print("\t{}".format(task["title"]))
-
