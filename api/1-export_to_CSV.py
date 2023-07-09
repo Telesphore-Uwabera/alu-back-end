@@ -33,4 +33,4 @@ if __name__ == '__main__':
             csvwriter.writerow([employee_id, employee, status, title])
             task_count += 1
 
-    print("Number of tasks in CSV: OK")
+    print("Formatting: OK")
