@@ -13,12 +13,14 @@ if __name__ == '__main__':
     url_user = 'https://jsonplaceholder.typicode.com/users/'
 
     todo_params = {'userId': employee_id}
-    todo_url_with_params = url_todo + '?' + urllib.parse.urlencode(todo_params)
+    todo_url_with_params = url_todo + '?' + \
+        urllib.parse.urlencode(todo_params)
     with urllib.request.urlopen(todo_url_with_params) as todo_response:
         todo_dict_list = json.loads(todo_response.read().decode())
 
     user_params = {'id': employee_id}
-    user_url_with_params = url_user + '?' + urllib.parse.urlencode(user_params)
+    user_url_with_params = url_user + '?' + \
+        urllib.parse.urlencode(user_params)
     with urllib.request.urlopen(user_url_with_params) as user_response:
         user_dict_list = json.loads(user_response.read().decode())
 
@@ -26,10 +28,12 @@ if __name__ == '__main__':
 
     with open(f'{employee_id}.csv', 'w', newline='') as csvfile:
         csvwriter = csv.writer(csvfile, quoting=csv.QUOTE_ALL)
-        csvwriter.writerow(["USER_ID", "USERNAME", "TASK_COMPLETED_STATUS", "TASK_TITLE"])
+        csvwriter.writerow(["USER_ID", "USERNAME", "TASK_COMPLETED_STATUS",
+                            "TASK_TITLE"])
         for task in todo_dict_list:
             status = task['completed']
             title = task['title']
             csvwriter.writerow([employee_id, employee, status, title])
 
     print(f"File {employee_id}.csv has been created with the task data.")
+
